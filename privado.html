@@ -34,6 +34,13 @@
       </details>
       <button class="btn ghost" id="backEmail">Cambiar correo / reenviar</button>
     </div>
+    <div id="stepApprove" class="stack" hidden>
+      <div class="alert info">Alguien pidió entrar a tu panel desde <b>otro dispositivo</b> con la cuenta <b id="approveEmail"></b>. Si fuiste tú, autorízalo y la sesión continuará allá.</div>
+      <div class="row" id="approveActions">
+        <button class="btn primary" id="approveBtn">Autorizar el otro dispositivo</button>
+        <button class="btn ghost" id="approveHere">Entrar aquí</button>
+      </div>
+    </div>
     <div class="msg" id="loginMsg"></div>
     <div id="localBox" hidden>
       <hr>

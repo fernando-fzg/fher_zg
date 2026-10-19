@@ -44,11 +44,13 @@ Para la página pública, coloca:
 3. En **Authentication → Users → Add user → Create new user**, crea tu usuario con ese mismo correo. Así solo existe tu cuenta.
 4. En **Authentication → Sign In / Providers**, desactiva **Allow new users to sign up**.
 5. En **Authentication → URL Configuration**:
-   - *Site URL*: la dirección de tu sitio en GitHub Pages (por ejemplo `https://fernandozela.github.io`).
-   - *Redirect URLs*: agrega `https://fernandozela.github.io/**` y, para probar en tu PC, `http://localhost:8765/**`.
+   - *Site URL*: `https://fernando-fzg.github.io/fher_zg/`
+   - *Redirect URLs*: agrega `https://fernando-fzg.github.io/fher_zg/**` y, para probar en tu PC, `http://localhost:8770/**`.
 6. En **Project Settings → API Keys**, copia la *Project URL* y la *anon public key* en `js/supabase-config.js`, junto con tu correo en `OWNER_EMAIL`.
 
-Para entrar, escribes tu correo, te llega un **enlace** y al abrirlo entras directamente. La plantilla de correo de Supabase no necesita cambios.
+7. En **SQL Editor**, ejecuta también `supabase/login-requests.sql`. Permite autorizar desde otro dispositivo: pides el enlace en la PC, lo abres en el celular, pulsas **Autorizar el otro dispositivo** y la PC entra sola.
+
+Para entrar, escribes tu correo, te llega un **enlace** y al abrirlo (en ese mismo dispositivo o en otro) la sesión continúa donde lo pediste. La plantilla de correo de Supabase no necesita cambios.
 
 > **Opcional: entrar con código en vez de enlace.** Supabase solo deja editar la plantilla si configuras un SMTP propio (por ejemplo Gmail con una "contraseña de aplicación"). Si lo haces, pon `{{ .Token }}` en la plantilla *Magic Link* y la página aceptará el código de 6 dígitos. Un SMTP propio también aumenta el límite de correos por hora.
 
@@ -56,7 +58,7 @@ Para entrar, escribes tu correo, te llega un **enlace** y al abrirlo entras dire
 
 ## 3. Publicar en GitHub Pages
 
-1. Crea un repositorio, por ejemplo `fernandozela.github.io`, que queda publicado directamente en esa dirección.
+1. Repositorio: `fernando-fzg/fher_zg` → el sitio queda en <https://fernando-fzg.github.io/fher_zg/>.
 2. Sube todos los archivos.
 3. Ve a **Settings → Pages → Source: Deploy from a branch → main / (root)**.
 4. Comprueba que la dirección de tu sitio esté en Supabase → **Authentication → URL Configuration** (paso 5 de la sección anterior).
