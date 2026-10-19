@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hi, I'm Fernando Zela</title>
+  <meta name="description" content="Fernando Zela — Ingeniería Biomédica. Proyectos, experiencia e investigación.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23f0b429'/><text x='16' y='21' font-family='Arial' font-weight='900' font-size='14' text-anchor='middle' fill='%23111'>fz</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/public.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a class="brand" href="#top">F. Zela<span class="dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav.about"></a></li>
+      <li><a href="#projects" data-i18n="nav.projects"></a></li>
+      <li><a href="#experience" data-i18n="nav.experience"></a></li>
+      <li><a href="#contact" data-i18n="nav.contact"></a></li>
+    </ul>
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+        <button data-lang="es">ES</button><button data-lang="en">EN</button>
+      </div>
+      <button class="icon-btn" data-theme-toggle aria-label="Cambiar tema">◐</button>
+      <button class="icon-btn burger" id="menuBtn" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Menú a pantalla completa -->
+<div class="overlay" id="overlay" hidden>
+  <div class="container">
+    <ol class="overlay-links">
+      <li><a href="#about" data-i18n="nav.about"></a></li>
+      <li><a href="#projects" data-i18n="nav.projects"></a></li>
+      <li><a href="#experience" data-i18n="nav.experience"></a></li>
+      <li><a href="#skills" data-i18n="nav.skills"></a></li>
+      <li><a href="#publications" data-i18n="nav.publications"></a></li>
+      <li><a href="#contact" data-i18n="nav.contact"></a></li>
+    </ol>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-intro">
+      <div class="eyebrow" data-c="role"></div>
+      <p class="tagline" data-c="tagline"></p>
+      <a class="more" href="#about"><span data-i18n="hero.more"></span> ↓</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="circle"></div>
+      <div class="hero-photo" id="heroPhoto">
+        <span class="initials" data-c="initials"></span>
+        <img id="photo" alt="Fernando Zela" onerror="this.remove()">
+      </div>
+    </div>
+
+    <h1 class="hero-title display"><span data-i18n="hero.hi"></span><span class="nm" data-c="name"></span></h1>
+
+    <div class="hero-cta">
+      <a class="btn primary" id="cvBtn" href="#" download>↓ <span data-i18n="hero.cv"></span></a>
+      <a class="btn" href="#projects" data-i18n="hero.projects"></a>
+    </div>
+
+    <div class="hero-foot">
+      <div class="socials" id="socials"></div>
+      <span class="loc" data-c="location"></span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="block" id="about">
+    <div class="container">
+      <div class="section-head"><span class="num">01</span><h2 class="display" data-i18n="sec.about"></h2></div>
+      <div class="about-grid reveal">
+        <div id="aboutText"></div>
+        <div class="facts" id="facts"></div>
+      </div>
+      <h3 class="eyebrow sub" data-i18n="sec.interests"></h3>
+      <div class="interests" id="interests"></div>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="container">
+      <div class="section-head"><span class="num">02</span><h2 class="display" data-i18n="sec.projects"></h2></div>
+      <div class="filters" id="filters"></div>
+      <div class="projects" id="projectList"></div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="container">
+      <div class="section-head"><span class="num">03</span><h2 class="display" data-i18n="sec.experience"></h2></div>
+      <div class="timeline reveal" id="timeline"></div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="container">
+      <div class="section-head"><span class="num">04</span><h2 class="display" data-i18n="sec.skills"></h2></div>
+      <div class="skills" id="skillList"></div>
+    </div>
+  </section>
+
+  <section class="block" id="publications">
+    <div class="container">
+      <div class="section-head"><span class="num">05</span><h2 class="display" data-i18n="sec.publications"></h2></div>
+      <div class="pubs" id="pubList"></div>
+      <div class="ids" id="ids"></div>
+      <h3 class="eyebrow sub" data-i18n="sec.certs"></h3>
+      <div class="certs" id="certList"></div>
+    </div>
+  </section>
+
+  <section class="block contact-block" id="contact">
+    <div class="container">
+      <div class="section-head"><span class="num">06</span><h2 class="display" data-i18n="sec.contact"></h2></div>
+      <div class="contact">
+        <div>
+          <p class="lead" data-i18n="contact.intro"></p>
+          <div class="contact-links" id="contactLinks"></div>
+        </div>
+        <form class="card" id="contactForm" method="POST">
+          <div><label data-i18n="contact.name"></label><input name="name" required></div>
+          <div><label data-i18n="contact.email"></label><input name="email" type="email" required></div>
+          <div><label data-i18n="contact.message"></label><textarea name="message" rows="5" required></textarea></div>
+          <button class="btn primary" type="submit" data-i18n="contact.send"></button>
+          <small class="muted" id="formNote"></small>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year"></span> Fernando Zela</span>
+    <a class="lock" href="privado.html" title="Área privada">● <span data-i18n="footer.private"></span></a>
+  </div>
+</footer>
+
+<script src="js/content.js"></script>
+<script src="js/public.js"></script>
+</body>
+</html>

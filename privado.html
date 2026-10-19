@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel personal · FZ</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d1b24'/><path d='M4 17h6l2-6 4 12 3-9 2 3h7' fill='none' stroke='%232ec4b6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/private.css">
+</head>
+<body class="private">
+
+<!-- ================= LOGIN ================= -->
+<div class="login" id="loginView">
+  <div class="card">
+    <div class="eyebrow">Área privada</div>
+    <h1>Panel personal</h1>
+    <p class="muted" style="margin:0;font-size:.9rem">Te enviaremos un enlace de acceso a tu correo.</p>
+    <div id="stepEmail" class="stack">
+      <div><label>Correo</label><input id="loginEmail" type="email" autocomplete="email" placeholder="tu@correo.com"></div>
+      <button class="btn primary" id="sendCode">Enviar enlace</button>
+    </div>
+    <div id="stepCode" class="stack" hidden>
+      <details>
+        <summary class="note" style="cursor:pointer">¿Tu correo trae un código en lugar de enlace?</summary>
+        <div class="stack" style="margin-top:10px">
+          <input id="loginCode" inputmode="numeric" maxlength="8" placeholder="123456" class="mono">
+          <button class="btn primary" id="verifyCode">Entrar con código</button>
+        </div>
+      </details>
+      <button class="btn ghost" id="backEmail">Cambiar correo / reenviar</button>
+    </div>
+    <div class="msg" id="loginMsg"></div>
+    <div id="localBox" hidden>
+      <hr>
+      <p class="note">Supabase aún no está configurado. En tu computadora puedes probar en <b>modo local</b> (los datos se guardan solo en este navegador).</p>
+      <button class="btn" id="localBtn">Entrar en modo local</button>
+    </div>
+    <a href="index.html" class="note">← Volver a la página pública</a>
+  </div>
+</div>
+
+<!-- ================= APP ================= -->
+<div class="app" id="appView" hidden>
+  <aside class="side">
+    <a class="brand" href="index.html">FZ Panel<span style="color:var(--accent)">.</span></a>
+    <div class="group">Vida académica</div>
+    <button class="nav-item" data-view="schedule">▦ Horario</button>
+    <button class="nav-item" data-view="calendar">◷ Calendario</button>
+    <div class="group">Vida saludable</div>
+    <button class="nav-item" data-view="health">♥ Registro corporal</button>
+    <button class="nav-item" data-view="menu">◍ Despensa y menú</button>
+    <div class="foot">
+      <span class="sync" id="syncState">—</span>
+      <span id="userLabel" class="mono"></span>
+      <div class="row"><button class="btn sm" id="logoutBtn">Cerrar sesión</button><button class="btn theme-toggle" data-theme-toggle aria-label="Cambiar tema">◐</button></div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ---------- HORARIO ---------- -->
+    <section class="view" id="view-schedule">
+      <div class="page-head">
+        <div><div class="eyebrow">Vida académica</div><h1>Horario semanal</h1></div>
+        <div class="actions">
+          <button class="btn primary" id="addCourse">+ Curso</button>
+          <button class="btn" id="schedSettings">⚙ Rango</button>
+          <button class="btn" id="printSched">⎙ Imprimir / PDF</button>
+        </div>
+      </div>
+      <div class="grid-side">
+        <div class="card" style="padding:12px">
+          <div id="schedAlerts" class="stack no-print" style="margin-bottom:10px"></div>
+          <div class="sched-wrap"><div class="sched" id="sched"></div></div>
+          <p class="note no-print" style="margin:10px 4px 0">Haz clic en un espacio vacío para crear un curso en ese horario · clic en un bloque para editarlo · las franjas rojas son eventos del calendario de esta semana.</p>
+        </div>
+        <div class="card legend-card">
+          <h3 style="font-size:1rem">Cursos</h3>
+          <div class="legend" id="legend"></div>
+          <div class="note" id="schedTotal" style="margin-top:10px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- CALENDARIO ---------- -->
+    <section class="view" id="view-calendar">
+      <div class="page-head">
+        <div><div class="eyebrow">Vida académica</div><h1>Calendario de actividades</h1></div>
+        <div class="actions"><button class="btn primary" id="addEvent">+ Actividad</button></div>
+      </div>
+      <div class="grid-side">
+        <div class="card">
+          <div class="cal-head">
+            <button class="btn sm" id="calPrev">‹</button>
+            <h2 id="calTitle"></h2>
+            <button class="btn sm" id="calNext">›</button>
+            <button class="btn sm ghost" id="calToday">Hoy</button>
+          </div>
+          <div class="cal" id="cal"></div>
+          <div class="cats" id="calCats" style="margin-top:12px"></div>
+        </div>
+        <div class="card">
+          <h3 style="font-size:1rem">Próximos 14 días</h3>
+          <div class="upcoming" id="upcoming"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- SALUD ---------- -->
+    <section class="view" id="view-health">
+      <div class="page-head">
+        <div><div class="eyebrow">Vida saludable</div><h1>Registro corporal</h1></div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="grid-side">
+        <div class="stack">
+          <div class="card">
+            <div class="row" style="justify-content:space-between">
+              <h3 style="font-size:1rem;margin:0">Evolución</h3>
+              <select id="chartMetric" style="width:auto">
+                <option value="weight">Peso (kg)</option>
+                <option value="waist">Cintura (cm)</option>
+                <option value="fat">% grasa</option>
+              </select>
+            </div>
+            <svg class="chart" id="chart" viewBox="0 0 640 240" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1rem">Nuevo registro</h3>
+            <form id="entryForm" class="grid-3" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr));align-items:end">
+              <div><label>Fecha</label><input type="date" name="date" required></div>
+              <div><label>Peso (kg)</label><input type="number" name="weight" step="0.1" min="20" max="300" required></div>
+              <div><label>Cintura (cm)</label><input type="number" name="waist" step="0.1" min="40" max="200"></div>
+              <div><label>% grasa</label><input type="number" name="fat" step="0.1" min="2" max="70"></div>
+              <button class="btn primary" type="submit">Guardar</button>
+            </form>
+            <div class="tbl-wrap" style="margin-top:14px"><table class="tbl" id="entryTable"></table></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size:1rem">Perfil y objetivo</h3>
+          <form id="profileForm" class="stack">
+            <div class="grid-2">
+              <div><label>Sexo</label><select name="sex"><option value="m">Masculino</option><option value="f">Femenino</option></select></div>
+              <div><label>Edad</label><input type="number" name="age" min="14" max="100"></div>
+            </div>
+            <div><label>Talla (cm)</label><input type="number" name="height" step="0.5" min="120" max="230"></div>
+            <div><label>Actividad física</label>
+              <select name="activity">
+                <option value="1.2">Sedentario</option>
+                <option value="1.375">Ligera (1–3 días/sem)</option>
+                <option value="1.55">Moderada (3–5 días/sem)</option>
+                <option value="1.725">Alta (6–7 días/sem)</option>
+              </select></div>
+            <div class="grid-2">
+              <div><label>Déficit (kcal)</label><input type="number" name="deficit" min="0" max="800" step="50"></div>
+              <div><label>Proteína (g/kg)</label><input type="number" name="protein" min="1.2" max="2.4" step="0.1"></div>
+            </div>
+            <div><label>Peso meta (kg)</label><input type="number" name="goalWeight" step="0.1"></div>
+            <button class="btn primary" type="submit">Guardar perfil</button>
+          </form>
+          <div id="targets" style="margin-top:16px"></div>
+          <p class="note">Valores estimados (Mifflin-St Jeor). Son una guía general, no reemplazan la evaluación de un nutricionista o médico.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- MENÚ ---------- -->
+    <section class="view" id="view-menu">
+      <div class="page-head">
+        <div><div class="eyebrow">Vida saludable</div><h1>Despensa y menú semanal</h1></div>
+        <div class="actions">
+          <button class="btn primary" id="genMenu">⟳ Generar menú</button>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-bottom:16px">
+        <div class="card stack">
+          <h3 style="font-size:1rem;margin:0">¿Qué alimentos tienes?</h3>
+          <div class="pantry-input">
+            <input id="pantryInput" list="ingList" placeholder="Ej: pollo, arroz, huevo…  (Enter para agregar)">
+            <datalist id="ingList"></datalist>
+            <button class="btn" id="pantryAdd">Agregar</button>
+          </div>
+          <div class="chips" id="pantryChips"></div>
+          <div class="row" style="justify-content:space-between">
+            <span class="note" id="pantryCount"></span>
+            <button class="btn sm ghost danger" id="pantryClear">Vaciar despensa</button>
+          </div>
+          <details><summary class="note" style="cursor:pointer">Sugerencias rápidas</summary><div class="quick" id="quickAdd" style="margin-top:8px"></div></details>
+        </div>
+        <div class="card stack">
+          <h3 style="font-size:1rem;margin:0">Opciones</h3>
+          <div><label>Calorías diarias objetivo</label><input type="number" id="menuKcal" min="1200" max="4000" step="50"></div>
+          <div><label>Ingredientes faltantes permitidos por plato</label>
+            <select id="menuMissing">
+              <option value="0">0 — solo con lo que tengo</option>
+              <option value="1">1 faltante</option>
+              <option value="2">2 faltantes</option>
+            </select></div>
+          <label class="row" style="color:var(--ink)"><input type="checkbox" id="menuStaples" checked> Asumir básicos: sal, pimienta, aceite, ajo, especias</label>
+          <p class="note" id="menuInfo" style="margin:0"></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="menu-wrap"><div class="menu" id="menuGrid"></div></div>
+        <p class="note" style="margin:10px 0 0">Clic en un plato para ver la receta · ⟳ para cambiar solo ese plato. Las porciones (×) se ajustan a tus calorías.</p>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3 style="font-size:1rem">Lista de compras</h3>
+        <ul class="shop" id="shopList"></ul>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ================= DIÁLOGOS ================= -->
+<dialog id="courseDlg">
+  <form method="dialog" id="courseForm">
+    <h3 id="courseDlgTitle">Curso</h3>
+    <div><label>Nombre del curso</label><input name="name" required></div>
+    <div class="grid-2">
+      <div><label>Tipo</label><select name="type"><option>Teoría</option><option>Práctica</option><option>Laboratorio</option><option>Seminario</option><option>Estudio</option><option>Otro</option></select></div>
+      <div><label>Color</label><input type="color" name="color"></div>
+    </div>
+    <div class="grid-2">
+      <div><label>Aula</label><input name="room"></div>
+      <div><label>Profesor(a)</label><input name="prof"></div>
+    </div>
+    <div>
+      <label>Horarios</label>
+      <div class="blocks-list" id="blocksList"></div>
+      <button type="button" class="btn sm" id="addBlock" style="margin-top:8px">+ Agregar horario</button>
+    </div>
+    <div class="foot">
+      <button type="button" class="btn danger left" id="delCourse">Eliminar</button>
+      <button type="button" class="btn" data-close>Cancelar</button>
+      <button type="submit" class="btn primary">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="settingsDlg">
+  <form method="dialog" id="settingsForm">
+    <h3>Rango del horario</h3>
+    <div class="grid-2">
+      <div><label>Hora inicio</label><input type="number" name="startHour" min="0" max="23"></div>
+      <div><label>Hora fin</label><input type="number" name="endHour" min="1" max="24"></div>
+    </div>
+    <label class="row" style="color:var(--ink)"><input type="checkbox" name="sunday"> Incluir domingo</label>
+    <div class="foot"><button type="button" class="btn" data-close>Cancelar</button><button class="btn primary">Guardar</button></div>
+  </form>
+</dialog>
+
+<dialog id="eventDlg">
+  <form method="dialog" id="eventForm">
+    <h3 id="eventDlgTitle">Actividad</h3>
+    <div><label>Título</label><input name="title" required></div>
+    <div class="grid-2">
+      <div><label>Fecha</label><input type="date" name="date" required></div>
+      <div><label>Hora (opcional)</label><input type="time" name="time"></div>
+    </div>
+    <div class="grid-2">
+      <div><label>Categoría</label><select name="cat" id="eventCat"></select></div>
+      <div><label>Curso (opcional)</label><select name="course" id="eventCourse"></select></div>
+    </div>
+    <div><label>Notas</label><textarea name="notes" rows="3"></textarea></div>
+    <label class="row" style="color:var(--ink)"><input type="checkbox" name="done"> Completado</label>
+    <div class="foot">
+      <button type="button" class="btn danger left" id="delEvent">Eliminar</button>
+      <button type="button" class="btn" data-close>Cancelar</button>
+      <button type="submit" class="btn primary">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="recipeDlg">
+  <form method="dialog">
+    <div id="recipeBody"></div>
+    <div class="foot"><button class="btn" data-close>Cerrar</button></div>
+  </form>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/recipes.js"></script>
+<script src="js/app.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/health.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>
