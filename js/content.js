@@ -25,11 +25,11 @@ window.CONTENT = {
   about: {
     es: [
       "Soy estudiante de octavo ciclo de Ingeniería Biomédica en la Pontificia Universidad Católica del Perú (PUCP). Antes de la universidad trabajé como técnico mecánico en Ferreyros, y desde 2022 he dado soporte técnico a equipos audiovisuales y electrónicos en las aulas de la PUCP.",
-      "Mi meta es desarrollarme en ingeniería clínica: que la tecnología médica de un hospital esté siempre disponible, segura y bien gestionada, porque detrás de cada equipo hay un paciente que depende de él. Mi experiencia reparando maquinaria pesada me enseñó la disciplina del mantenimiento preventivo y correctivo; la ingeniería biomédica me da las bases para aplicarla a dispositivos médicos. Busco prácticas en hospitales, empresas de equipamiento médico o áreas de gestión de tecnología sanitaria."
+      "Mi meta es desarrollarme en Ingeniería Clínica: que la tecnología médica de un hospital esté siempre disponible, segura y bien gestionada, porque detrás de cada equipo hay un paciente que depende de él. Mi experiencia laboral me enseñó la disciplina del mantenimiento preventivo y correctivo; la ingeniería biomédica me da las bases para aplicarla a dispositivos médicos. Actualmente, busco prácticas en hospitales, empresas de equipamiento médico o áreas de gestión de tecnología sanitaria."
     ],
     en: [
       "I am an eighth-semester Biomedical Engineering student at Pontificia Universidad Católica del Perú (PUCP). Before university I worked as a mechanical technician at Ferreyros, and since 2022 I have provided technical support for audiovisual and electronic classroom equipment at PUCP.",
-      "My goal is to grow in clinical engineering: making sure a hospital's medical technology is always available, safe and well managed, because behind every device there is a patient who depends on it. Repairing heavy machinery taught me the discipline of preventive and corrective maintenance; biomedical engineering gives me the foundation to apply it to medical devices. I am looking for internships in hospitals, medical equipment companies or healthcare technology management."
+      "My goal is to grow in Clinical Engineering: making sure a hospital's medical technology is always available, safe and well managed, because behind every device there is a patient who depends on it. My work experience taught me the discipline of preventive and corrective maintenance; biomedical engineering gives me the foundation to apply it to medical devices. I am currently looking for internships in hospitals, medical equipment companies or healthcare technology management."
     ]
   },
 
