@@ -5,12 +5,12 @@
   const UI = {
     es: {
       "nav.about": "Sobre mí", "nav.projects": "Proyectos", "nav.experience": "Trayectoria",
-      "nav.skills": "Habilidades", "nav.publications": "Publicaciones", "nav.contact": "Contacto",
+      "nav.skills": "Habilidades", "nav.certs": "Certificados", "nav.contact": "Contacto", "exp.ref": "Imagen referencial",
       "hero.more": "Leer más", "hero.hi": "Hola, soy", "hero.cv": "Descargar CV",
       "hero.projects": "Ver proyectos",
       "sec.about": "Sobre mí", "sec.interests": "Intereses de investigación", "sec.projects": "Proyectos",
       "sec.experience": "Trayectoria", "sec.skills": "Habilidades",
-      "sec.publications": "Publicaciones", "sec.certs": "Certificaciones y premios", "sec.contact": "Hablemos",
+      "sec.certs": "Certificaciones", "sec.contact": "Hablemos",
       "proj.problem": "Problema", "proj.solution": "Solución", "proj.result": "Resultado", "proj.all": "Todos",
       "proj.link": "Ver más →", "proj.noimg": "[ imagen del proyecto ]",
       "contact.intro": "¿Tienes una propuesta de investigación, prácticas o colaboración? Escríbeme.",
@@ -21,12 +21,12 @@
     },
     en: {
       "nav.about": "About", "nav.projects": "Projects", "nav.experience": "Journey",
-      "nav.skills": "Skills", "nav.publications": "Publications", "nav.contact": "Contact",
+      "nav.skills": "Skills", "nav.certs": "Certificates", "nav.contact": "Contact", "exp.ref": "Reference image",
       "hero.more": "Read more", "hero.hi": "Hi, I'm", "hero.cv": "Download CV",
       "hero.projects": "See projects",
       "sec.about": "About me", "sec.interests": "Research interests", "sec.projects": "Projects",
       "sec.experience": "Journey", "sec.skills": "Skills",
-      "sec.publications": "Publications", "sec.certs": "Certifications & awards", "sec.contact": "Let's talk",
+      "sec.certs": "Certifications", "sec.contact": "Let's talk",
       "proj.problem": "Problem", "proj.solution": "Solution", "proj.result": "Result", "proj.all": "All",
       "proj.link": "Learn more →", "proj.noimg": "[ project image ]",
       "contact.intro": "Have a research, internship or collaboration opportunity? Get in touch.",
@@ -67,9 +67,8 @@
     $("#socials").innerHTML = [
       ["LinkedIn", S.linkedin, ICONS.linkedin], ["GitHub", S.github, ICONS.github],
       ["Email", S.email && "mailto:" + S.email, ICONS.mail], ["ORCID", S.orcid, ICONS.orcid]
-    ].map(([n, u, svg]) => u
-      ? `<a href="${esc(u)}" target="_blank" rel="noopener" aria-label="${n}" title="${n}">${svg}</a>`
-      : `<span class="off" title="${n} — ${UI[lang].todo}">${svg}</span>`).join("");
+    ].filter(([, u]) => u)   // solo se muestran los enlaces que tengas configurados
+      .map(([n, u, svg]) => `<a href="${esc(u)}" target="_blank" rel="noopener" aria-label="${n}" title="${n}">${svg}</a>`).join("");
 
     $("#aboutText").innerHTML = (C.about[lang] || []).map((p) => `<p>${esc(p)}</p>`).join("") + todo(C.about);
     $("#facts").innerHTML = C.facts.map((f) => `<div class="fact"><span>${esc(t(f.k))}</span><span>${esc(t(f.v))}${todo(f)}</span></div>`).join("");
@@ -84,24 +83,22 @@
     $("#timeline").innerHTML = C.experience.map((e) => `
       <div class="tl-item ${e.type}">
         <div class="period">${esc(t(e.period))}</div>
-        <h3>${esc(t(e.title))}${todo(e)}</h3>
-        <div class="org">${esc(e.org)}</div>
-        <p>${esc(t(e.desc))}</p>
+        <div class="tl-body">
+          <div class="org">${esc(e.org)}</div>
+          <h3>${esc(t(e.title))}${todo(e)}</h3>
+          ${e.points ? `<ul class="tl-points">${e.points.map((p) => `<li>${esc(t(p))}</li>`).join("")}</ul>` : ""}
+          ${e.desc ? `<p>${esc(t(e.desc))}</p>` : ""}
+        </div>
+        ${e.image ? `<figure class="tl-img">
+          <img src="${esc(e.image.src)}" alt="${esc(UI[lang]["exp.ref"])}: ${esc(t(e.title))}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()">
+          <figcaption>${UI[lang]["exp.ref"]} · <a href="${esc(e.image.url)}" target="_blank" rel="noopener">${esc(e.image.source)}</a></figcaption>
+        </figure>` : ""}
       </div>`).join("");
 
     $("#skillList").innerHTML = C.skills.map((s) =>
       `<div class="card reveal"><h3><span>${s.ico}</span>${esc(t(s.g))}</h3><ul>${s.items.map((i) => `<li>${esc(t(i))}</li>`).join("")}</ul></div>`).join("");
 
-    $("#pubList").innerHTML = C.publications.map((p) => `
-      <div class="card pub reveal"><div class="year">${esc(p.year)}</div>
-        <div><div class="title">${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title)}${todo(p)}</div>
-        <div class="meta">${esc(p.meta)}</div></div></div>`).join("");
-
     const L = C.links;
-    const idLinks = [["ORCID", L.orcid], ["Google Scholar", L.scholar], ["ResearchGate", L.researchgate]];
-    $("#ids").innerHTML = idLinks.map(([n, u]) => u
-      ? `<a class="btn sm" href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`
-      : `<span class="btn sm" style="opacity:.5">${n} <span class="todo">—</span></span>`).join("");
 
     $("#certList").innerHTML = C.certifications.map((c) => `
       <div class="card cert reveal"><div class="ico">${c.ico}</div><div>
@@ -109,9 +106,8 @@
         <div class="meta">${esc(t(c.meta))}</div></div></div>`).join("");
 
     const contacts = [["Email", L.email && "mailto:" + L.email, L.email], ["LinkedIn", L.linkedin], ["GitHub", L.github]];
-    $("#contactLinks").innerHTML = contacts.map(([k, u, label]) => u
-      ? `<a href="${esc(u)}" target="_blank" rel="noopener"><span class="k">${k}</span>${esc(label || u.replace(/^https?:\/\/(www\.)?/, ""))}</a>`
-      : `<a aria-disabled="true" style="opacity:.6"><span class="k">${k}</span><span class="todo">${UI[lang].todo}</span></a>`).join("");
+    $("#contactLinks").innerHTML = contacts.filter(([, u]) => u).map(([k, u, label]) =>
+      `<a href="${esc(u)}" target="_blank" rel="noopener"><span class="k">${k}</span>${esc(label || u.replace(/^https?:\/\/(www\.)?/, ""))}</a>`).join("");
 
     $("#formNote").textContent = C.formEndpoint ? "" : UI[lang]["contact.noform"];
     observe();

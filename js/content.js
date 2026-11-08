@@ -23,14 +23,13 @@ window.CONTENT = {
   },
 
   about: {
-    todo: true,
     es: [
       "Soy estudiante de octavo ciclo de Ingeniería Biomédica en la Pontificia Universidad Católica del Perú (PUCP). Antes de la universidad trabajé como técnico mecánico en Ferreyros, y desde 2022 he dado soporte técnico a equipos audiovisuales y electrónicos en las aulas de la PUCP.",
-      "[Completa aquí: qué te motiva, en qué área te quieres especializar y qué tipo de oportunidades buscas.]"
+      "Mi meta es desarrollarme en ingeniería clínica: que la tecnología médica de un hospital esté siempre disponible, segura y bien gestionada, porque detrás de cada equipo hay un paciente que depende de él. Mi experiencia reparando maquinaria pesada me enseñó la disciplina del mantenimiento preventivo y correctivo; la ingeniería biomédica me da las bases para aplicarla a dispositivos médicos. Busco prácticas en hospitales, empresas de equipamiento médico o áreas de gestión de tecnología sanitaria."
     ],
     en: [
       "I am an eighth-semester Biomedical Engineering student at Pontificia Universidad Católica del Perú (PUCP). Before university I worked as a mechanical technician at Ferreyros, and since 2022 I have provided technical support for audiovisual and electronic classroom equipment at PUCP.",
-      "[To complete: what drives you, which area you want to specialize in and the opportunities you are looking for.]"
+      "My goal is to grow in clinical engineering: making sure a hospital's medical technology is always available, safe and well managed, because behind every device there is a patient who depends on it. Repairing heavy machinery taught me the discipline of preventive and corrective maintenance; biomedical engineering gives me the foundation to apply it to medical devices. I am looking for internships in hospitals, medical equipment companies or healthcare technology management."
     ]
   },
 
@@ -43,10 +42,10 @@ window.CONTENT = {
   ],
 
   interests: [
-    { ico: "〰", t: { es: "Procesamiento de señales", en: "Signal processing" }, d: { es: "ECG, EMG, EEG: adquisición, filtrado y análisis.", en: "ECG, EMG, EEG: acquisition, filtering and analysis." } },
-    { ico: "⚙", t: { es: "Modelado fisiológico", en: "Physiological modeling" }, d: { es: "Modelos matemáticos y control de sistemas biológicos.", en: "Mathematical models and control of biological systems." } },
-    { ico: "✚", t: { es: "Dispositivos médicos", en: "Medical devices" }, d: { es: "Diseño, prototipado y normativa (ISO 13485, IEC 60601).", en: "Design, prototyping and regulation (ISO 13485, IEC 60601)." } },
-    { ico: "⬡", t: { es: "Ingeniería de tejidos", en: "Tissue engineering" }, d: { es: "Biomateriales y andamios para medicina regenerativa.", en: "Biomaterials and scaffolds for regenerative medicine." } }
+    { ico: "✚", t: { es: "Ingeniería clínica", en: "Clinical engineering" }, d: { es: "Tecnología médica segura y disponible en hospitales y centros de salud.", en: "Safe, available medical technology in hospitals and health centers." } },
+    { ico: "♥", t: { es: "Dispositivos biomédicos", en: "Biomedical devices" }, d: { es: "Funcionamiento, evaluación y seguridad de equipos de diagnóstico y terapia.", en: "Operation, evaluation and safety of diagnostic and therapy equipment." } },
+    { ico: "⚙", t: { es: "Gestión y mantenimiento de equipos médicos", en: "Medical equipment management & maintenance" }, d: { es: "Inventario, mantenimiento preventivo y correctivo, y ciclo de vida de la tecnología.", en: "Inventory, preventive and corrective maintenance, and technology life cycle." } },
+    { ico: "⬡", t: { es: "Biomecánica", en: "Biomechanics" }, d: { es: "Análisis del movimiento humano y aplicaciones en rehabilitación.", en: "Human movement analysis and rehabilitation applications." } }
   ],
 
   projects: [
@@ -100,23 +99,49 @@ window.CONTENT = {
       period: { es: "Sep 2022 — Ago 2026 · 5 periodos", en: "Sep 2022 — Aug 2026 · 5 terms" },
       title: { es: "Auxiliar de Intendencia de Aulas", en: "Classroom Services Assistant" },
       org: "PUCP",
-      desc: { es: "Soporte técnico de equipos audiovisuales y electrónicos en aulas; atención de incidencias.", en: "Technical support for audiovisual and electronic classroom equipment; incident response." }
+      points: [
+        { es: "Soporte técnico de equipos audiovisuales y electrónicos en aulas.", en: "Technical support for audiovisual and electronic classroom equipment." },
+        { es: "Atención de incidencias durante las clases.", en: "Incident response during classes." }
+      ],
+      // Imagen referencial tomada de PuntoEdu PUCP (se muestra desde su servidor, con enlace a la fuente)
+      image: {
+        src: "https://files.pucp.education/puntoedu/wp-content/uploads/2023/12/11161019/cicloverano2024servicios.jpg",
+        source: "PuntoEdu PUCP",
+        url: "https://puntoedu.pucp.edu.pe/vida-universitaria/institucional/servicios-pucp-este-ciclo-de-verano-2024/"
+      }
     },
     {
       type: "edu",
       period: { es: "Feb 2018 — Actualidad", en: "Feb 2018 — Present" },
       title: { es: "Ingeniería Biomédica", en: "Biomedical Engineering" },
       org: "PUCP",
-      desc: { es: "Estudiante de octavo ciclo. Facultad de Ciencias e Ingeniería.", en: "Eighth-semester student. Faculty of Science and Engineering." }
+      points: [
+        { es: "Estudiante de octavo ciclo (VIII).", en: "Eighth-semester (VIII) student." },
+        { es: "Facultad de Ciencias e Ingeniería.", en: "Faculty of Science and Engineering." },
+        { es: "Carrera de 10 semestres: Bachiller en Ciencias con mención en Ingeniería Biomédica y título de Ingeniero Biomédico.", en: "10-semester program: Bachelor of Science in Biomedical Engineering and professional degree as Biomedical Engineer." }
+      ],
+      image: {
+        src: "https://files.pucp.education/puntoedu/wp-content/uploads/2022/09/21173540/1-laboratorio-de-ingenieria-medica_096-1920x1080-1-1024x576.jpg",
+        source: "PuntoEdu PUCP",
+        url: "https://puntoedu.pucp.edu.pe/investigaciones/investigacion/pucp-tiene-primer-laboratorio-peruano-que-desarrollara-equipos-medicos/"
+      }
     },
     {
       type: "work",
       period: { es: "Nov 2014 — Ago 2016 · 4 periodos", en: "Nov 2014 — Aug 2016 · 4 terms" },
       title: { es: "Técnico Mecánico Nivel 4", en: "Level 4 Mechanical Technician" },
       org: "Ferreyros S.A.",
-      desc: {
-        es: "Reparación y mantenimiento preventivo y correctivo de maquinaria pesada Caterpillar (CAT) en taller: diagnóstico de fallas, desmontaje, inspección y montaje de componentes (motores, transmisiones y sistemas hidráulicos) siguiendo los manuales y procedimientos del fabricante, con normas de seguridad y registro de los trabajos realizados.",
-        en: "Preventive and corrective repair and maintenance of Caterpillar (CAT) heavy machinery in the workshop: fault diagnosis, disassembly, inspection and reassembly of components (engines, transmissions and hydraulic systems) following the manufacturer's manuals and procedures, under safety standards and with records of the work performed."
+      points: [
+        { es: "Reparación y mantenimiento preventivo y correctivo de maquinaria pesada Caterpillar (CAT) en taller.", en: "Preventive and corrective repair and maintenance of Caterpillar (CAT) heavy machinery in the workshop." },
+        { es: "Diagnóstico de fallas.", en: "Fault diagnosis." },
+        { es: "Desmontaje, inspección y montaje de componentes: motores, transmisiones y sistemas hidráulicos.", en: "Disassembly, inspection and reassembly of components: engines, transmissions and hydraulic systems." },
+        { es: "Trabajo según los manuales y procedimientos del fabricante.", en: "Work following the manufacturer's manuals and procedures." },
+        { es: "Cumplimiento de normas de seguridad y registro de los trabajos realizados.", en: "Compliance with safety standards and records of the work performed." }
+      ],
+      image: {
+        src: "https://static.ferreyros.com.pe/fcsaprdferreyros01/2018/03/poster.jpg",
+        source: "Ferreyros",
+        url: "https://www.ferreyros.com.pe/servicios/talleres/"
       }
     }
   ],
@@ -140,9 +165,6 @@ window.CONTENT = {
     { ico: "✚", g: { es: "Normativa y gestión", en: "Regulation & management" }, items: ["ISO 13485", "IEC 60601", "ISO 14971", "Gestión de tecnología"] }
   ],
 
-  publications: [
-    { todo: true, year: "2025", title: "[Título del póster / artículo]", meta: "[Autores] · [Congreso o revista]", link: "" }
-  ],
 
   certifications: [
     {
@@ -161,7 +183,7 @@ window.CONTENT = {
       ico: "◈",
       title: { es: "Prevención de Riesgos Laborales", en: "Occupational Risk Prevention" },
       meta: { es: "Ministerio de Trabajo y Promoción del Empleo · 16 horas · Nota 20/20 · Oct 2026", en: "Peru's Ministry of Labor · 16 hours · Grade 20/20 · Oct 2026" },
-      link: ""   // sin PDF público: el certificado muestra el número de DNI
+      link: "assets/certificados/prevencion-riesgos-laborales.pdf"
     },
     {
       ico: "◈",
@@ -172,7 +194,7 @@ window.CONTENT = {
   ],
 
   links: {
-    email: "",          // tu correo de contacto
+    email: "fernando.zela@pucp.edu.pe",
     linkedin: "",       // https://www.linkedin.com/in/...
     github: "",         // https://github.com/...
     orcid: "",          // https://orcid.org/...
@@ -181,5 +203,5 @@ window.CONTENT = {
   },
 
   // Formulario de contacto: crea uno gratis en https://formspree.io y pega aquí la URL
-  formEndpoint: ""
+  formEndpoint: "https://formspree.io/f/mwlljgke"
 };

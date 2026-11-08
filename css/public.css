@@ -149,16 +149,25 @@ section.block + section.block { border-top: 1px solid var(--line); }
 
 /* Trayectoria */
 .timeline { display: grid; }
-.tl-item { display: grid; grid-template-columns: 160px 1fr auto; gap: 32px; padding: 32px 0; border-top: 1px solid var(--line-strong); }
+.tl-item { display: grid; grid-template-columns: 150px 1fr minmax(220px, 340px); gap: 40px; padding: 40px 0; border-top: 1px solid var(--line-strong); align-items: start; }
 .tl-item:last-child { border-bottom: 1px solid var(--line-strong); }
-.tl-item .period { font: 700 .8rem var(--display); color: var(--muted); padding-top: 8px; }
-.tl-item h3 { font: 800 clamp(1.4rem, 2.6vw, 2.2rem)/1.05 var(--display); letter-spacing: -.035em; margin: 0 0 8px; }
-.tl-item .org { grid-column: 3; grid-row: 1; font: 700 .68rem var(--display); letter-spacing: .12em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); align-self: start; }
+.tl-item .period { font: 700 .8rem/1.4 var(--display); color: var(--muted); padding-top: 6px; }
+.tl-body { min-width: 0; }
+.tl-item .org { display: inline-block; font: 700 .68rem var(--display); letter-spacing: .12em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: var(--surface-2); margin-bottom: 12px; }
 .tl-item.edu .org { background: var(--accent); color: var(--on-accent); }
+.tl-item h3 { font: 800 clamp(1.4rem, 2.6vw, 2.2rem)/1.05 var(--display); letter-spacing: -.035em; margin: 0 0 16px; }
+.tl-points { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.tl-points li { position: relative; padding-left: 20px; color: var(--muted); }
+.tl-points li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .tl-item p { margin: 0; color: var(--muted); }
-@media (max-width: 860px) {
-  .tl-item { grid-template-columns: 1fr; gap: 8px; }
-  .tl-item .org { grid-column: 1; grid-row: auto; justify-self: start; }
+.tl-img { margin: 0; }
+.tl-img img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-box); filter: grayscale(1); transition: filter .4s; background: var(--surface-2); }
+.tl-item:hover .tl-img img { filter: none; }
+.tl-img figcaption { font: 500 .7rem var(--display); color: var(--muted); margin-top: 8px; }
+.tl-img figcaption a { color: var(--muted); }
+@media (max-width: 960px) {
+  .tl-item { grid-template-columns: 1fr; gap: 16px; }
+  .tl-img { max-width: 420px; }
 }
 
 /* Habilidades */
