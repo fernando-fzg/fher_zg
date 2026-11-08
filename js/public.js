@@ -83,14 +83,14 @@
 
     $("#timeline").innerHTML = C.experience.map((e) => `
       <div class="tl-item ${e.type}">
-        <div class="period">${esc(e.period)}</div>
+        <div class="period">${esc(t(e.period))}</div>
         <h3>${esc(t(e.title))}${todo(e)}</h3>
         <div class="org">${esc(e.org)}</div>
         <p>${esc(t(e.desc))}</p>
       </div>`).join("");
 
     $("#skillList").innerHTML = C.skills.map((s) =>
-      `<div class="card reveal"><h3><span>${s.ico}</span>${esc(t(s.g))}</h3><ul>${s.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></div>`).join("");
+      `<div class="card reveal"><h3><span>${s.ico}</span>${esc(t(s.g))}</h3><ul>${s.items.map((i) => `<li>${esc(t(i))}</li>`).join("")}</ul></div>`).join("");
 
     $("#pubList").innerHTML = C.publications.map((p) => `
       <div class="card pub reveal"><div class="year">${esc(p.year)}</div>
@@ -105,8 +105,8 @@
 
     $("#certList").innerHTML = C.certifications.map((c) => `
       <div class="card cert reveal"><div class="ico">${c.ico}</div><div>
-        <div class="title">${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">${esc(c.title)}</a>` : esc(c.title)}${todo(c)}</div>
-        <div class="meta">${esc(c.meta)}</div></div></div>`).join("");
+        <div class="title">${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener">${esc(t(c.title))}</a>` : esc(t(c.title))}${todo(c)}</div>
+        <div class="meta">${esc(t(c.meta))}</div></div></div>`).join("");
 
     const contacts = [["Email", L.email && "mailto:" + L.email, L.email], ["LinkedIn", L.linkedin], ["GitHub", L.github]];
     $("#contactLinks").innerHTML = contacts.map(([k, u, label]) => u

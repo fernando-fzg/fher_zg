@@ -68,7 +68,7 @@
   margin: 18% 0 0; font-size: clamp(3.2rem, 8.4vw, 7.6rem); line-height: .86; text-align: left;
 }
 .hero-title > span:first-child { display: block; font-size: .42em; font-weight: 700; letter-spacing: -.02em; margin-bottom: .15em; }
-.hero-title .nm { display: block; max-width: 6.5ch; }
+.hero-title .nm { display: block; width: min-content; }
 .hero-title .nm::after { content: "."; color: var(--accent); }
 [data-theme="dark"] .hero-title .nm::after { color: var(--ink); }
 

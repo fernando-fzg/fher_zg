@@ -25,19 +25,20 @@ window.CONTENT = {
   about: {
     todo: true,
     es: [
-      "Soy estudiante de Ingeniería Biomédica. [Describe aquí en 2–3 frases quién eres, qué te motiva y en qué área te quieres especializar.]",
-      "[Segundo párrafo: experiencia destacada, laboratorio o grupo de investigación, y qué tipo de oportunidades buscas.]"
+      "Soy estudiante de octavo ciclo de Ingeniería Biomédica en la Pontificia Universidad Católica del Perú (PUCP). Antes de la universidad trabajé como técnico mecánico en Ferreyros, y desde 2022 he dado soporte técnico a equipos audiovisuales y electrónicos en las aulas de la PUCP.",
+      "[Completa aquí: qué te motiva, en qué área te quieres especializar y qué tipo de oportunidades buscas.]"
     ],
     en: [
-      "I am a Biomedical Engineering student. [Describe in 2–3 sentences who you are, what drives you and which area you want to specialize in.]",
-      "[Second paragraph: key experience, lab or research group, and the opportunities you are looking for.]"
+      "I am an eighth-semester Biomedical Engineering student at Pontificia Universidad Católica del Perú (PUCP). Before university I worked as a mechanical technician at Ferreyros, and since 2022 I have provided technical support for audiovisual and electronic classroom equipment at PUCP.",
+      "[To complete: what drives you, which area you want to specialize in and the opportunities you are looking for.]"
     ]
   },
 
   facts: [
-    { k: { es: "Universidad", en: "University" }, v: "Universidad Peruana Cayetano Heredia", todo: true },
+    { k: { es: "Universidad", en: "University" }, v: "Pontificia Universidad Católica del Perú (PUCP)" },
+    { k: { es: "Ciclo", en: "Semester" }, v: { es: "Octavo ciclo (VIII)", en: "Eighth semester (VIII)" } },
     { k: { es: "Ubicación", en: "Location" }, v: "Lima, Perú" },
-    { k: { es: "Idiomas", en: "Languages" }, v: { es: "Español (nativo), Inglés (—)", en: "Spanish (native), English (—)" }, todo: true },
+    { k: { es: "Idiomas", en: "Languages" }, v: { es: "Español (nativo), Inglés (intermedio)", en: "Spanish (native), English (intermediate)" } },
     { k: { es: "Estado", en: "Status" }, v: { es: "Abierto a prácticas e investigación", en: "Open to internships & research" } }
   ],
 
@@ -94,12 +95,45 @@ window.CONTENT = {
   },
 
   experience: [
-    { todo: true, type: "work", period: "2025 — ", title: { es: "[Cargo / Prácticas]", en: "[Role / Internship]" }, org: "[Institución]", desc: { es: "[Qué hiciste y qué lograste]", en: "[What you did and achieved]" } },
-    { todo: true, type: "work", period: "2024", title: { es: "[Asistente de laboratorio]", en: "[Lab assistant]" }, org: "[Laboratorio]", desc: { es: "[Descripción]", en: "[Description]" } },
-    { todo: true, type: "edu", period: "20XX — 20XX", title: { es: "Ingeniería Biomédica", en: "Biomedical Engineering" }, org: "Universidad Peruana Cayetano Heredia", desc: { es: "[Ciclo actual, menciones, cursos relevantes]", en: "[Current year, honors, relevant courses]" } }
+    {
+      type: "work",
+      period: { es: "Sep 2022 — Ago 2026 · 5 periodos", en: "Sep 2022 — Aug 2026 · 5 terms" },
+      title: { es: "Auxiliar de Intendencia de Aulas", en: "Classroom Services Assistant" },
+      org: "PUCP",
+      desc: { es: "Soporte técnico de equipos audiovisuales y electrónicos en aulas; atención de incidencias.", en: "Technical support for audiovisual and electronic classroom equipment; incident response." }
+    },
+    {
+      type: "edu",
+      period: { es: "Feb 2018 — Actualidad", en: "Feb 2018 — Present" },
+      title: { es: "Ingeniería Biomédica", en: "Biomedical Engineering" },
+      org: "PUCP",
+      desc: { es: "Estudiante de octavo ciclo. Facultad de Ciencias e Ingeniería.", en: "Eighth-semester student. Faculty of Science and Engineering." }
+    },
+    {
+      type: "work",
+      period: { es: "Nov 2014 — Ago 2016 · 4 periodos", en: "Nov 2014 — Aug 2016 · 4 terms" },
+      title: { es: "Técnico Mecánico Nivel 4", en: "Level 4 Mechanical Technician" },
+      org: "Ferreyros S.A.",
+      desc: {
+        es: "Reparación y mantenimiento preventivo y correctivo de maquinaria pesada Caterpillar (CAT) en taller: diagnóstico de fallas, desmontaje, inspección y montaje de componentes (motores, transmisiones y sistemas hidráulicos) siguiendo los manuales y procedimientos del fabricante, con normas de seguridad y registro de los trabajos realizados.",
+        en: "Preventive and corrective repair and maintenance of Caterpillar (CAT) heavy machinery in the workshop: fault diagnosis, disassembly, inspection and reassembly of components (engines, transmissions and hydraulic systems) following the manufacturer's manuals and procedures, under safety standards and with records of the work performed."
+      }
+    }
   ],
 
+  // Revisa los grupos de ejemplo: solo "Soporte y ofimática" viene de tus documentos.
   skills: [
+    {
+      ico: "▣",
+      g: { es: "Soporte y ofimática", en: "Support & office tools" },
+      items: [
+        { es: "Equipos audiovisuales", en: "Audiovisual equipment" },
+        { es: "Equipos electrónicos", en: "Electronic equipment" },
+        { es: "Atención de incidencias", en: "Incident response" },
+        { es: "Excel (intermedio)", en: "Excel (intermediate)" },
+        { es: "Word (intermedio)", en: "Word (intermediate)" }
+      ]
+    },
     { ico: "〰", g: { es: "Señales e instrumentación", en: "Signals & instrumentation" }, items: ["ECG/EMG", "Filtros digitales", "Amplificadores", "Adquisición de datos"] },
     { ico: "⌘", g: { es: "Programación", en: "Programming" }, items: ["Python", "MATLAB", "C/C++", "Git"] },
     { ico: "⚙", g: { es: "Diseño y prototipado", en: "Design & prototyping" }, items: ["SolidWorks", "Impresión 3D", "Arduino", "ESP32", "KiCad"] },
@@ -111,8 +145,30 @@ window.CONTENT = {
   ],
 
   certifications: [
-    { todo: true, ico: "◈", title: "[Certificación o curso]", meta: "[Entidad] · 2025", link: "" },
-    { todo: true, ico: "★", title: "[Premio / Hackathon]", meta: "[Organizador] · 2024", link: "" }
+    {
+      ico: "◈",
+      title: { es: "Excel Intermedio", en: "Intermediate Excel" },
+      meta: { es: "UPC · Becas Grupo Romero · 20 horas · Nov 2026", en: "UPC · Becas Grupo Romero · 20 hours · Nov 2026" },
+      link: "assets/certificados/excel-intermedio.pdf"
+    },
+    {
+      ico: "◈",
+      title: { es: "Word Intermedio", en: "Intermediate Word" },
+      meta: { es: "UPC · Becas Grupo Romero · 15 horas · Nov 2026", en: "UPC · Becas Grupo Romero · 15 hours · Nov 2026" },
+      link: "assets/certificados/word-intermedio.pdf"
+    },
+    {
+      ico: "◈",
+      title: { es: "Prevención de Riesgos Laborales", en: "Occupational Risk Prevention" },
+      meta: { es: "Ministerio de Trabajo y Promoción del Empleo · 16 horas · Nota 20/20 · Oct 2026", en: "Peru's Ministry of Labor · 16 hours · Grade 20/20 · Oct 2026" },
+      link: ""   // sin PDF público: el certificado muestra el número de DNI
+    },
+    {
+      ico: "◈",
+      title: { es: "Salud y seguridad para ambientes de trabajo moderno", en: "Health and Safety for Modern Workplaces" },
+      meta: { es: "Fundación Romero · Becas Grupo Romero · 16 horas · Oct 2026", en: "Fundación Romero · Becas Grupo Romero · 16 hours · Oct 2026" },
+      link: "assets/certificados/salud-y-seguridad.pdf"
+    }
   ],
 
   links: {

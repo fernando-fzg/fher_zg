@@ -257,7 +257,12 @@ const isOwner = (email) => !CFG.OWNER_EMAIL || (email || "").toLowerCase() === C
       ? await sb.auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: redirect } })
       : { error: null };
     $("#sendCode").disabled = false;
-    if (error) return loginMsg("No se pudo enviar el correo: " + error.message, "err");
+    if (error) {
+      clearInterval(pollTimer);
+      return loginMsg(/rate limit/i.test(error.message)
+        ? "Se alcanzó el límite de correos por hora de Supabase. Espera un rato (hasta 1 hora) e inténtalo de nuevo."
+        : "No se pudo enviar el correo: " + error.message, "err");
+    }
     $("#stepEmail").hidden = true; $("#stepCode").hidden = false;
     if (req) {
       waitForApproval(req);
