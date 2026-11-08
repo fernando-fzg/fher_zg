@@ -78,6 +78,7 @@
     const cats = [...new Set(C.projects.map((p) => p.category))];
     $("#filters").innerHTML = [["all", UI[lang]["proj.all"]], ...cats.map((c) => [c, t(C.categories[c]) || c])]
       .map(([k, l]) => `<button data-f="${k}" class="${k === filter ? "active" : ""}">${esc(l)}</button>`).join("");
+    $("#filters").hidden = C.projects.length < 2;   // el filtro solo sirve con varios proyectos
     renderProjects();
 
     $("#timeline").innerHTML = C.experience.map((e) => `

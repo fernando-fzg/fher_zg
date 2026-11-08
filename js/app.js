@@ -261,6 +261,8 @@ const isOwner = (email) => !CFG.OWNER_EMAIL || (email || "").toLowerCase() === C
       clearInterval(pollTimer);
       return loginMsg(/rate limit/i.test(error.message)
         ? "Se alcanzó el límite de correos por hora de Supabase. Espera un rato (hasta 1 hora) e inténtalo de nuevo."
+        : /fetch|network/i.test(error.message)
+        ? "No se pudo conectar con Supabase. Revisa que el proyecto esté activo (los proyectos gratuitos se pausan por inactividad)."
         : "No se pudo enviar el correo: " + error.message, "err");
     }
     $("#stepEmail").hidden = true; $("#stepCode").hidden = false;

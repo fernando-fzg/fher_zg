@@ -60,28 +60,6 @@ window.CONTENT = {
       solution: { es: "[¿Qué construiste o diseñaste? ¿Cuál fue tu rol?]", en: "[What did you build or design? What was your role?]" },
       result: { es: "[Resultado medible: precisión, costo, premio, publicación…]", en: "[Measurable outcome: accuracy, cost, award, publication…]" },
       tags: ["Arduino", "Python"]
-    },
-    {
-      todo: true,
-      title: { es: "Proyecto 2 — [Nombre]", en: "Project 2 — [Name]" },
-      period: "2025",
-      category: "modeling",
-      image: "", link: "",
-      problem: { es: "[Problema]", en: "[Problem]" },
-      solution: { es: "[Solución]", en: "[Solution]" },
-      result: { es: "[Resultado]", en: "[Result]" },
-      tags: ["MATLAB", "Simulink"]
-    },
-    {
-      todo: true,
-      title: { es: "Proyecto 3 — [Nombre]", en: "Project 3 — [Name]" },
-      period: "2024",
-      category: "research",
-      image: "", link: "",
-      problem: { es: "[Problema]", en: "[Problem]" },
-      solution: { es: "[Solución]", en: "[Solution]" },
-      result: { es: "[Resultado]", en: "[Result]" },
-      tags: ["Biomateriales"]
     }
   ],
 
