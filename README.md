@@ -59,7 +59,8 @@ Para entrar, escribes tu correo, te llega un **enlace** y al abrirlo (en ese mis
 ## 3. Publicar en GitHub Pages
 
 1. Repositorio: `fernando-fzg/fher_zg` → el sitio queda en <https://fernando-fzg.github.io/fher_zg/>.
-2. Sube todos los archivos.
+2. Sube todos los archivos (menos la carpeta `.claude`). Esta carpeta ya está conectada con Git, así que basta con `git add -A`, `git commit` y `git push`.
+   - Al cambiar CSS o JS, actualiza el número `?v=` de los enlaces en `index.html` y `privado.html`; así los navegadores descargan la versión nueva en lugar de la guardada.
 3. Ve a **Settings → Pages → Source: Deploy from a branch → main / (root)**.
 4. Comprueba que la dirección de tu sitio esté en Supabase → **Authentication → URL Configuration** (paso 5 de la sección anterior).
 
